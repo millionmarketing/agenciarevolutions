@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=42">
-  <link rel="stylesheet" href="/painel/painel.css?v=2">
+  <link rel="stylesheet" href="/painel/painel.css?v=3">
 </head>
 <body class="panel-body">
 
@@ -150,6 +150,17 @@
     </main>
   </div>
 
-  <script src="/painel/painel.js?v=2" defer></script>
+  <!-- Confirmação de exclusão -->
+  <dialog class="confirm" id="delDialog" aria-labelledby="delTitle">
+    <h2 id="delTitle">Excluir <span id="delKind">este registro</span>?</h2>
+    <p><strong id="delName"></strong> sai do painel de vez. Essa ação não pode ser desfeita.</p>
+    <p class="form__error" id="delError" role="alert" hidden></p>
+    <div class="confirm__actions">
+      <button class="btn btn--ghost btn--sm" id="delCancel" type="button" autofocus>Cancelar</button>
+      <button class="btn btn--sm btn--danger" id="delConfirm" type="button"><span class="js-label">Excluir</span></button>
+    </div>
+  </dialog>
+
+  <script src="/painel/painel.js?v=3" defer></script>
 </body>
 </html>
