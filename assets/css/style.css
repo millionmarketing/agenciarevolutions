@@ -127,7 +127,8 @@ em { font-style: normal; color: var(--pink); }
 .hero__lead { font-size: clamp(16px, 1.4vw, 19px); color: rgba(245,245,247,.75); max-width: 560px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-.hero__visual { position: relative; isolation: isolate; aspect-ratio: 4 / 5; max-width: 460px; justify-self: end; width: 100%; margin-right: 24px; }
+.hero__visual { position: relative; isolation: isolate; aspect-ratio: 4 / 5; max-width: 460px; justify-self: end; width: 100%; margin-right: max(-48px, min(24px, calc((1200px - 100vw) / 2 + 24px))); }
+/* Avança para a direita só o que a margem da tela permite, sem cortar o card de alcance */
 
 /* Anel grande atrás da foto, saindo pela direita como meio círculo: desenha uma vez */
 .hero__ring {
@@ -481,7 +482,7 @@ input:user-invalid, textarea:user-invalid { border-color: #ff5a5f; }
 @media (max-width: 1080px) {
   .hero__grid { grid-template-columns: 1.15fr .85fr; gap: 48px; }
   .hero__ring { right: -50%; top: 70%; }
-  .hero__visual { max-width: 360px; margin-right: 16px; }
+  .hero__visual { max-width: 360px; margin-right: 8px; }
   .card-float--reach { right: -20px; width: 176px; }
   .bento { grid-template-columns: 1fr 1fr; }
   .svc--chat { grid-row: auto; grid-column: 1 / -1; }
