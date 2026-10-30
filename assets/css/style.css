@@ -142,6 +142,7 @@ em { font-style: normal; color: var(--pink); }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 
 .hero__photo { margin: 0; height: 100%; border-radius: var(--radius); overflow: hidden; position: relative; border: 1px solid var(--line); box-shadow: 0 40px 80px -30px rgba(0,0,0,.9); animation: photo-in 1.2s .15s var(--ease) both; }
+.hero__photo picture { display: contents; }
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; }
 .hero__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0) 40%, rgba(10,10,10,.7)); }
 @keyframes photo-in { from { opacity: 0; clip-path: inset(6% 6% 6% 6% round var(--radius)); } to { opacity: 1; clip-path: inset(0 round var(--radius)); } }
@@ -535,8 +536,8 @@ input:user-invalid, textarea:user-invalid { border-color: #ff5a5f; }
 @media (max-width: 640px) {
   .hero { padding-top: 108px; }
   .hero__grid { grid-template-columns: 1fr; }
-  /* Celular: foto abaixo do texto, saindo pela direita */
-  .hero__visual { width: 78vw; max-width: none; margin: 56px calc(-1 * var(--gutter) - 18vw) 8px 0; --bleed: 0px; }
+  /* Celular: só o texto, sem foto, anel e cards */
+  .hero__visual { display: none; }
   .hero__actions { width: 100%; }
   .hero__actions .btn { flex: 1 1 100%; }
   .bento { grid-template-columns: 1fr; }

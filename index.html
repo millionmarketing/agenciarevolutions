@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/creator-1.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=42">
+  <link rel="preload" as="image" href="assets/img/creator-1.webp" media="(min-width: 641px)">
+  <link rel="stylesheet" href="assets/css/style.css?v=43">
 </head>
 <body>
 
@@ -75,7 +75,11 @@
             <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glow)"/>
           </svg>
           <figure class="hero__photo">
-            <img src="assets/img/creator-1.webp" alt="" width="900" height="1199">
+            <picture>
+              <!-- No celular a foto fica oculta: imagem vazia evita o download -->
+              <source media="(max-width: 640px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+              <img src="assets/img/creator-1.webp" alt="" width="900" height="1199">
+            </picture>
           </figure>
 
           <div class="card-float card-float--stat">
