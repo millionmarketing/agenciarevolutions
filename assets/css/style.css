@@ -193,11 +193,6 @@ em { font-style: normal; color: var(--pink); }
 .brand--onlyfans .brand__logo { --logo: url("../img/brands/onlyfans.svg"); --r: 1876.66 / 328.57; }
 .brand--fansly .brand__logo { --logo: url("../img/brands/fansly.svg"); --r: 100 / 28; --h: clamp(32px, 3.6vw, 50px); }
 .brand--telegram .brand__logo { --logo: url("../img/brands/telegram.svg"); --r: 203 / 50; --h: clamp(32px, 3.6vw, 50px); }
-.brand__tag {
-  margin-left: 12px; align-self: flex-start; margin-top: -6px;
-  font: 600 10px/1 var(--font-title); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
-  color: var(--pink); border: 1px solid var(--pink-a25); background: var(--pink-a10); border-radius: 999px; padding: 6px 9px;
-}
 .brand:hover .brand__logo { filter: drop-shadow(0 0 16px rgba(255,10,117,.5)); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -657,7 +652,6 @@ input:user-invalid, textarea:user-invalid { border-color: #ff5a5f; }
   .marquee { --gap: 30px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .marquee__track { animation-duration: 24s; }
   .brand__logo { --h: 26px !important; }
-  .brand__tag { display: none; }
   .brand::after { width: 5px; height: 5px; }
   .footer__inner { grid-template-columns: 1fr; }
 }
