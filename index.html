@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/creator-1.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=23">
+  <link rel="stylesheet" href="assets/css/style.css?v=30">
 </head>
 <body>
 
@@ -50,6 +50,15 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="topo">
+      <svg class="hero__ring" viewBox="0 0 1000 1000" aria-hidden="true">
+        <defs>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="9" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glow)"/>
+      </svg>
       <img class="hero__bg" src="assets/img/creator-1.webp" alt="" width="900" height="1199" aria-hidden="true">
 
       <div class="container hero__grid">
@@ -67,15 +76,6 @@
         </div>
 
         <div class="hero__visual" aria-hidden="true">
-          <svg class="hero__ring" viewBox="0 0 1000 1000" aria-hidden="true">
-            <defs>
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="9" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glow)"/>
-          </svg>
           <figure class="hero__photo">
             <img src="assets/img/creator-1.webp" alt="" width="900" height="1199">
           </figure>
@@ -302,11 +302,6 @@
           <h2>Pronta para <em>profissionalizar</em> a sua carreira?</h2>
           <p>Deixa seus dados. A nossa equipe analisa o seu perfil e te chama no WhatsApp.</p>
           <a class="btn btn--primary btn--lg btn--arrow js-modal" href="#contato">Analisar meu perfil <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <ul class="trust trust--center">
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Análise gratuita</li>
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Sem compromisso</li>
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg>Sigilo total</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -349,7 +344,10 @@
     <form class="form" id="leadForm" name="contato" method="POST" data-netlify="true" netlify-honeypot="empresa" action="obrigado.html">
       <input type="hidden" name="form-name" value="contato">
       <header class="modal__head">
-        <span class="eyebrow">Análise gratuita</span>
+        <div class="modal__brand">
+          <img src="assets/img/logo-pink.png" alt="" width="36" height="36">
+          <span>Análise gratuita</span>
+        </div>
         <h2 id="leadTitle">Vamos analisar o seu perfil</h2>
         <p>Preenche rapidinho. A nossa equipe te chama no WhatsApp.</p>
       </header>
@@ -383,10 +381,11 @@
       </div>
       <label class="check">
         <input type="checkbox" name="maior_de_idade" value="sim" required>
+        <i class="check__box" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.2 2.2 4.8-4.8"/></svg></i>
         <span>Confirmo que tenho 18 anos ou mais.</span>
       </label>
-      <button class="btn btn--primary btn--lg btn--block" type="submit">Analisar meu perfil</button>
-      <p class="form__note">Usamos seus dados apenas para falar com você. Veja a <a href="privacidade.html">política de privacidade</a>.</p>
+      <button class="btn btn--primary btn--lg btn--block btn--arrow" type="submit"><span class="js-label">Analisar meu perfil</span> <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="form__note"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>Seus dados ficam em sigilo e são usados apenas para falar com você. <a href="privacidade.html">Política de privacidade</a>.</p>
 
       <div class="form__done" id="formDone" hidden>
         <img src="assets/img/logo-pink.png" alt="" width="56" height="56">
@@ -397,6 +396,6 @@
     </form>
   </dialog>
 
-  <script src="assets/js/main.js?v=23" defer></script>
+  <script src="assets/js/main.js?v=30" defer></script>
 </body>
 </html>

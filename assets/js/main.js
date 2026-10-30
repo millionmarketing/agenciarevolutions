@@ -228,8 +228,9 @@
       e.preventDefault();
       if (!form.reportValidity()) return;
       const btn = form.querySelector('button[type="submit"]');
+      const label = btn.querySelector('.js-label');
       btn.disabled = true;
-      btn.textContent = 'Enviando…';
+      label.textContent = 'Enviando…';
       const data = new FormData(form);
 
       try {
@@ -250,7 +251,7 @@
         done.hidden = false;
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Analisar meu perfil';
+        label.textContent = 'Analisar meu perfil';
       }
     });
   }
