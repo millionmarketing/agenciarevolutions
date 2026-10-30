@@ -5,11 +5,11 @@
   <script>document.documentElement.classList.remove("no-js")</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Revolutions · Gestão de carreira para criadoras de conteúdo</title>
-  <meta name="description" content="A Revolutions faz a gestão completa da carreira de criadoras de conteúdo +18: chat especializado 24h, estruturação de perfil, marketing, apoio jurídico e operação em plataformas nacionais e internacionais.">
+  <meta name="description" content="A Revolutions faz a gestão completa da carreira de criadoras de conteúdo +18: chat especializado, estruturação de perfil, marketing, apoio jurídico e operação em plataformas como Privacy, OnlyFans e Fansly.">
   <meta name="theme-color" content="#0A0A0A">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Revolutions · Você entrega, a gente garante.">
-  <meta property="og:description" content="Gestão completa de carreira para criadoras de conteúdo +18. Chat 24h, perfil, marketing e jurídico.">
+  <meta property="og:description" content="Gestão completa de carreira para criadoras de conteúdo +18. Chat, perfil, marketing e jurídico.">
   <meta property="og:image" content="assets/img/og-logo.png">
   <meta property="og:locale" content="pt_BR">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/creator-1.webp">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=23">
 </head>
 <body>
 
@@ -26,6 +26,7 @@
 
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
+    <span class="nav__progress" id="navProgress" aria-hidden="true"></span>
     <div class="container nav__inner">
       <a href="#topo" class="nav__brand" aria-label="Revolutions, voltar ao início">
         <img src="assets/img/logo-pink.png" alt="" width="40" height="40">
@@ -33,13 +34,12 @@
       </a>
       <nav class="nav__links" id="menu" aria-label="Principal">
         <a href="#servicos">Serviços</a>
-        <a href="#diferenciais">Diferenciais</a>
         <a href="#metodo">Método</a>
-        <a href="#resultados">Resultados</a>
         <a href="#faq">Dúvidas</a>
-        <a href="#contato" class="nav__mobile-cta btn btn--primary">Quero ser gerenciada</a>
+        <a href="trabalhe-conosco.html">Trabalhe conosco</a>
+        <a href="#contato" class="nav__mobile-cta btn btn--primary js-modal">Analisar meu perfil</a>
       </nav>
-      <a href="#contato" class="btn btn--primary btn--sm nav__cta">Quero ser gerenciada</a>
+      <a href="#contato" class="btn btn--primary btn--sm nav__cta js-modal">Analisar meu perfil</a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span>
       </button>
@@ -50,15 +50,7 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="topo">
-      <svg class="hero__ring" viewBox="0 0 1000 1000" aria-hidden="true">
-        <defs>
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="9" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glow)"/>
-      </svg>
+      <img class="hero__bg" src="assets/img/creator-1.webp" alt="" width="900" height="1199" aria-hidden="true">
 
       <div class="container hero__grid">
         <div class="hero__copy">
@@ -67,36 +59,29 @@
             Sua carreira de criadora, gerida como uma <em>empresa de verdade.</em>
           </h1>
           <p class="hero__lead reveal">
-            A gente cuida do chat 24 horas, do seu perfil, da divulgação e da parte jurídica, aqui no Brasil e lá fora. Você cria. O resto fica com a gente.
+            Chat com seus fãs, perfil, divulgação e parte jurídica, aqui no Brasil e lá fora. Você cria. O resto fica com a gente.
           </p>
           <div class="hero__actions reveal">
-            <a class="btn btn--primary btn--lg js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">
-              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 2.9 2.6 5.3 5.5 5.5l1.1-1.2-1.8-.9-.8.7a4 4 0 0 1-2.5-2.5l.7-.8-.9-1.8z"/></svg>
-              Chamar no WhatsApp
-            </a>
-            <a class="btn btn--ghost btn--lg" href="#contato">Analisar meu perfil</a>
+            <a class="btn btn--primary btn--lg btn--arrow js-modal" href="#contato">Analisar meu perfil <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
-          <p class="hero__tagline reveal">Você entrega, a gente garante.</p>
         </div>
 
-        <div class="hero__visual reveal" aria-hidden="true">
+        <div class="hero__visual" aria-hidden="true">
+          <svg class="hero__ring" viewBox="0 0 1000 1000" aria-hidden="true">
+            <defs>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="9" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glow)"/>
+          </svg>
           <figure class="hero__photo">
             <img src="assets/img/creator-1.webp" alt="" width="900" height="1199">
           </figure>
 
-          <div class="chat card-float card-float--chat">
-            <div class="chat__head">
-              <img src="assets/img/logo-pink.png" alt="" width="28" height="28">
-              <div>
-                <strong>Operação de chat</strong>
-                <small><i class="dot"></i> online agora · <span id="clock">03:14</span></small>
-              </div>
-            </div>
-            <div class="chat__body" id="chatBody"></div>
-          </div>
-
           <div class="card-float card-float--stat">
-            <span class="label">Operação</span>
+            <span class="label">Chat</span>
             <strong>24h</strong>
             <small>7 dias por semana</small>
           </div>
@@ -110,46 +95,46 @@
           </div>
         </div>
       </div>
-
-      <a href="#problema" class="hero__scroll" aria-label="Rolar para baixo"><span></span></a>
     </section>
 
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Chat 24h</span><b></b><span>Estruturação de perfil</span><b></b><span>Nacional + internacional</span><b></b><span>Marketing</span><b></b><span>Apoio jurídico</span><b></b><span>Sigilo total</span><b></b>
-        <span>Chat 24h</span><b></b><span>Estruturação de perfil</span><b></b><span>Nacional + internacional</span><b></b><span>Marketing</span><b></b><span>Apoio jurídico</span><b></b><span>Sigilo total</span><b></b>
+    <!-- ============ PLATAFORMAS ============ -->
+    <section class="platforms" aria-label="Onde operamos">
+      <div class="container platforms__inner">
+        <span class="label">Onde operamos</span>
+        <ul>
+          <li>Privacy</li>
+          <li>OnlyFans</li>
+          <li>Fansly</li>
+          <li class="platforms__more">e outras do Brasil e de fora</li>
+        </ul>
       </div>
-    </div>
+    </section>
 
     <!-- ============ PROBLEMA ============ -->
     <section class="section" id="problema">
       <div class="container">
         <header class="section__head reveal">
-          <span class="eyebrow">O jogo real</span>
-          <h2>Criar conteúdo é só metade do trabalho. <em>A outra metade cansa.</em></h2>
-          <p>Responder fã de madrugada, decidir preço, divulgar, entender contrato, correr atrás de vazamento. Fazer tudo isso sozinha esgota qualquer uma. E aí o crescimento trava.</p>
+          <h2>Criar conteúdo é metade do trabalho. A outra metade cansa.</h2>
+          <p>Responder fã de madrugada, decidir preço, divulgar, resolver contrato. Fazendo tudo sozinha, o crescimento trava.</p>
         </header>
 
         <div class="versus">
           <article class="versus__col versus__col--alone reveal">
             <h3>Sozinha</h3>
             <ul>
-              <li>Você vai dormir e o chat fica parado. A venda vai embora junto</li>
-              <li>Perfil montado no feeling, sem pensar em preço, conteúdo e frequência</li>
-              <li>Uma plataforma só, um público só</li>
-              <li>Divulgação só quando sobra tempo</li>
-              <li>Contrato e vazamento resolvidos no susto, sem ninguém do seu lado</li>
+              <li>Você dorme, o chat para e a venda vai junto</li>
+              <li>Perfil montado no feeling</li>
+              <li>Uma plataforma e um público</li>
+              <li>Divulgação quando sobra tempo</li>
             </ul>
           </article>
           <article class="versus__col versus__col--rev reveal">
             <h3><img src="assets/img/logo-pink.png" alt="" width="28" height="28"> Com a Revolutions</h3>
             <ul>
-              <li>Um time de chat conversando com seus fãs 24 horas por dia</li>
-              <li>Perfil pensado para vender, da bio aos pacotes</li>
-              <li>Você presente em plataformas do Brasil e de fora</li>
-              <li>Divulgação com plano, calendário e meta</li>
-              <li>Apoio jurídico para você trabalhar tranquila</li>
+              <li>Time atendendo seus fãs dia e noite</li>
+              <li>Perfil pensado para vender</li>
+              <li>Presença no Brasil e lá fora</li>
+              <li>Divulgação com plano e meta</li>
             </ul>
           </article>
         </div>
@@ -160,62 +145,63 @@
     <section class="section section--alt" id="servicos">
       <div class="container">
         <header class="section__head reveal">
-          <span class="eyebrow">Serviços</span>
-          <h2>Uma operação completa. <em>Um time só.</em></h2>
-          <p>Você faz o conteúdo. A gente cuida de tudo o que vem depois.</p>
+          <h2>Uma operação completa, com <em>um time dedicado.</em></h2>
         </header>
 
         <div class="bento">
           <article class="svc svc--chat reveal">
+            <img class="svc__bg" src="assets/img/creator-2.webp" alt="" loading="lazy" width="900" height="1087">
             <div class="svc__text">
               <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
               <h3>Chat especializado 24h</h3>
-              <p>Nosso time é treinado no melhor método de chat do mercado. Ele conversa do seu jeito, cria conexão de verdade com cada fã e vende pacotes e conteúdo personalizado. De madrugada, no feriado, todo santo dia.</p>
+              <p>Um time treinado conversa com seus fãs no seu tom, cria conexão e vende pacotes e conteúdo personalizado. Em turnos, inclusive de madrugada e no feriado.</p>
               <ul class="ticks">
-                <li>Turnos que se revezam, então o chat nunca fica sozinho</li>
-                <li>Roteiros e personalidade combinados com você antes de começar</li>
-                <li>Cada conversa passa por controle de qualidade</li>
+                <li>Tom de voz e limites combinados com você antes de começar</li>
+                <li>Controle de qualidade em cada conversa</li>
               </ul>
             </div>
-            <div class="svc__meter" aria-hidden="true">
-              <div class="clock24">
-                <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52"/><circle class="arc" cx="60" cy="60" r="52" pathLength="1"/></svg>
-                <span><strong>24</strong>horas</span>
+
+            <div class="chatbox" aria-hidden="true">
+              <div class="chatbox__head">
+                <img src="assets/img/logo-pink.png" alt="" width="30" height="30">
+                <div>
+                  <strong>Operação de chat</strong>
+                  <small><i class="dot"></i> online agora · <span id="chatClock">03:12</span></small>
+                </div>
+                <span class="chatbox__badge">24h</span>
               </div>
-              <div class="shifts">
-                <span>Manhã</span><span>Tarde</span><span>Noite</span><span>Madrugada</span>
-              </div>
+              <div class="chatbox__body" id="chatBody"></div>
             </div>
           </article>
 
           <article class="svc reveal">
             <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.6"/><path d="M7.5 17c.8-2.2 2.5-3.3 4.5-3.3s3.7 1.1 4.5 3.3"/></svg>
             <h3>Estruturação de perfil</h3>
-            <p>Bio, capa, preços, pacotes e calendário de postagem. Tudo pensado para quem visita virar assinante.</p>
+            <p>Bio, capa, preços, pacotes e calendário pensados para quem visita virar assinante.</p>
           </article>
 
           <article class="svc reveal">
             <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>
             <h3>Nacional + internacional</h3>
-            <p>Conhecemos as plataformas brasileiras e as gringas. Mais público, mais mercado e receita em mais de uma moeda.</p>
+            <p>Plataformas brasileiras e de fora. Mais público e receita em mais de uma moeda.</p>
           </article>
 
           <article class="svc reveal">
             <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/><path d="M15 6l3-3 3 3M18 3v6"/></svg>
             <h3>Marketing</h3>
-            <p>Estratégia de divulgação e conteúdo de atração para chegar gente nova no seu perfil todos os dias.</p>
+            <p>Divulgação com estratégia para trazer gente nova ao seu perfil todo dia.</p>
           </article>
 
           <article class="svc reveal">
             <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.4 2.4L15.5 10"/></svg>
-            <h3>Apoio jurídico</h3>
-            <p>Ajuda com contratos, direito de imagem e remoção de conteúdo vazado. Você trabalha protegida.</p>
+            <h3>Apoio jurídico e sigilo</h3>
+            <p>Contratos, direito de imagem e remoção de conteúdo vazado. Sua identidade fica protegida.</p>
           </article>
 
-          <a class="svc svc--cta reveal" href="#contato">
+          <a class="svc svc--cta reveal js-modal" href="#contato">
             <span class="eyebrow">Próximo passo</span>
             <h3>Descubra o que falta no seu perfil.</h3>
-            <span class="svc__arrow">Pedir diagnóstico
+            <span class="svc__arrow">Analisar meu perfil
               <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </a>
@@ -223,121 +209,35 @@
       </div>
     </section>
 
-    <!-- ============ DIFERENCIAIS ============ -->
-    <section class="section" id="diferenciais">
-      <div class="container diff">
-        <div class="diff__media reveal">
-          <figure>
-            <img src="assets/img/creator-2.webp" alt="Criadora de conteúdo sob luz rosa" loading="lazy" width="900" height="1087">
-          </figure>
-          <div class="diff__badge">
-            <span class="pill pill--solid">Sigilo total</span>
-            <p>Sua identidade, seus dados e seu conteúdo ficam guardados com a gente. Ninguém fica sabendo.</p>
-          </div>
-        </div>
-
-        <div class="diff__copy">
-          <header class="section__head section__head--left reveal">
-            <span class="eyebrow">Diferenciais</span>
-            <h2>Por que criadoras escolhem <em>a Revolutions.</em></h2>
-          </header>
-
-          <ol class="diff__list">
-            <li class="reveal">
-              <span class="num">01</span>
-              <div>
-                <h3>Operação 24h, de verdade</h3>
-                <p>Seu público não dorme, e o nosso chat também não. Com turnos fixos, sempre tem alguém respondendo rápido, inclusive no horário em que mais se vende.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="num">02</span>
-              <div>
-                <h3>O melhor método de chat do mercado</h3>
-                <p>Temos um jeito próprio de atender: criar conexão, personalizar e vender. Cada chatter é treinado, acompanhado de perto e avaliado pelos números.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="num">03</span>
-              <div>
-                <h3>Brasil e mundo na mesma gestão</h3>
-                <p>A maioria das agências trabalha só um mercado. A gente opera no Brasil e lá fora, e leva o seu conteúdo para onde o público está pagando.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ MÉTODO ============ -->
-    <section class="section section--alt" id="metodo">
+    <section class="section" id="metodo">
       <div class="container">
         <header class="section__head reveal">
-          <span class="eyebrow">Método</span>
-          <h2>Do primeiro contato à escala <em>em 4 etapas.</em></h2>
+          <h2>Do primeiro contato à escala em 4 etapas.</h2>
         </header>
 
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="pill pill--outline">Etapa 1</span>
+        <ol class="steps reveal">
+          <li class="step">
+            <span class="step__num">01</span>
             <h3>Diagnóstico</h3>
-            <p>Uma conversa rápida para entender seu momento, seus números e onde você está deixando dinheiro na mesa.</p>
+            <p>Uma conversa para entender seu momento e onde dá para crescer.</p>
           </li>
-          <li class="step reveal">
-            <span class="pill pill--outline">Etapa 2</span>
+          <li class="step">
+            <span class="step__num">02</span>
             <h3>Estruturação</h3>
-            <p>Junto com você, montamos perfil, preços, pacotes, plataformas e o calendário de conteúdo.</p>
+            <p>Montamos com você perfil, preços, pacotes e calendário.</p>
           </li>
-          <li class="step reveal">
-            <span class="pill pill--outline">Etapa 3</span>
-            <h3>Operação 24h</h3>
-            <p>Chat, divulgação e suporte rodando todos os dias. Sua parte é entregar o conteúdo.</p>
+          <li class="step">
+            <span class="step__num">03</span>
+            <h3>Operação</h3>
+            <p>Chat e divulgação rodando todo dia. Você cuida apenas do conteúdo.</p>
           </li>
-          <li class="step reveal">
-            <span class="pill pill--solid">Etapa 4</span>
+          <li class="step">
+            <span class="step__num">04</span>
             <h3>Escala</h3>
-            <p>Acompanhamos os números, ajustamos o que precisa e abrimos novos mercados. O que funciona, a gente multiplica.</p>
+            <p>Acompanhamos os números, ajustamos e abrimos novos mercados.</p>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <!-- ============ RESULTADOS ============ -->
-    <section class="section" id="resultados">
-      <div class="container results">
-        <div class="results__copy">
-          <header class="section__head section__head--left reveal">
-            <span class="eyebrow">Resultados</span>
-            <h2>Resultado se mede em número. <em>E se guarda em sigilo.</em></h2>
-            <p>Nossas criadoras não viram vitrine. Discrição faz parte do serviço. Na call de diagnóstico, mostramos cases reais (com autorização) e os indicadores que acompanhamos todo dia.</p>
-          </header>
-          <ul class="ticks reveal">
-            <li>Receita por plataforma e por canal de venda</li>
-            <li>Tempo de resposta e conversão do chat</li>
-            <li>Ticket médio, renovação e retenção de assinantes</li>
-            <li>Relatório frequente mostrando o que mudou e qual é o próximo passo</li>
-          </ul>
-          <a href="#contato" class="btn btn--primary reveal">Ver cases na call</a>
-        </div>
-
-        <div class="dash reveal" aria-hidden="true">
-          <div class="dash__top">
-            <span class="label">Painel da criadora</span>
-            <span class="pill pill--outline pill--xs">Ilustrativo</span>
-          </div>
-          <div class="dash__kpis">
-            <div><small>Tempo de resposta</small><strong>&lt; 2 min</strong></div>
-            <div><small>Chat ativo</small><strong>24/7</strong></div>
-            <div><small>Mercados</small><strong>BR + Global</strong></div>
-          </div>
-          <div class="dash__chart">
-            <small>Receita mensal</small>
-            <div class="bars">
-              <i style="--h:22%"></i><i style="--h:30%"></i><i style="--h:28%"></i><i style="--h:41%"></i><i style="--h:47%"></i><i style="--h:55%"></i><i style="--h:63%"></i><i style="--h:72%"></i><i style="--h:80%"></i><i class="hl" style="--h:94%"></i>
-            </div>
-            <div class="bars__axis"><span>Entrada</span><span>Hoje</span></div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -346,15 +246,13 @@
       <img class="fit__bg" src="assets/img/creator-3.webp" alt="" loading="lazy" width="1400" height="933">
       <div class="container fit__inner">
         <div class="fit__card reveal">
-          <span class="eyebrow">Para quem é</span>
           <h2>A Revolutions é para você se…</h2>
           <ul class="ticks">
-            <li>Você é criadora +18 e quer levar isso a sério como carreira</li>
-            <li>Já ganha dinheiro, mas sente que chegou no limite fazendo tudo sozinha</li>
+            <li>É criadora +18 e quer tratar isso como carreira</li>
+            <li>Já fatura, mas chegou no limite fazendo tudo sozinha</li>
             <li>Está começando e quer começar do jeito certo</li>
-            <li>Quer faturar em mais de uma plataforma e em mais de um país</li>
+            <li>Quer faturar em mais de uma plataforma e de um país</li>
           </ul>
-          <a class="btn btn--primary js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">Falar com a equipe</a>
         </div>
       </div>
     </section>
@@ -363,36 +261,34 @@
     <section class="section" id="faq">
       <div class="container faq">
         <header class="section__head section__head--left reveal">
-          <span class="eyebrow">Dúvidas</span>
-          <h2>Perguntas <em>frequentes.</em></h2>
-          <p>Não achou a sua? Manda no WhatsApp que a gente responde rapidinho.</p>
-          <a class="btn btn--ghost js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+          <h2>Perguntas frequentes</h2>
+          <p>Não achou a sua? Pergunta pra gente na análise do seu perfil.</p>
         </header>
 
         <div class="faq__list">
           <details class="reveal" open>
-            <summary>Preciso já ter muitos seguidores para entrar?</summary>
-            <p>Não. Trabalhamos com criadoras em várias fases, desde quem está começando até quem já fatura bem e quer crescer mais. No diagnóstico, a gente mostra o melhor caminho para o seu momento.</p>
+            <summary>Preciso ter muitos seguidores para entrar?</summary>
+            <p>Não. Atendemos criadoras em todas as fases. No diagnóstico, mostramos o caminho para o seu momento.</p>
           </details>
           <details class="reveal">
             <summary>Quem vai conversar com os meus fãs?</summary>
-            <p>Um time de chatters treinados no nosso método, se revezando para cobrir as 24 horas. Antes de começar, a gente combina com você o tom de voz, os seus limites e o que pode ou não ser oferecido.</p>
+            <p>Chatters treinados, em turnos. Antes de começar, combinamos com você o tom de voz, os seus limites e o que pode ser oferecido.</p>
           </details>
           <details class="reveal">
             <summary>Minha identidade e meus dados ficam seguros?</summary>
-            <p>Sim. Sigilo é regra da casa. O acesso às suas contas é controlado, a equipe trabalha sob confidencialidade e, se algum conteúdo vazar, o nosso apoio jurídico entra em ação.</p>
+            <p>Sim. O acesso às contas é controlado, a equipe trabalha sob confidencialidade e, se algum conteúdo vazar, o apoio jurídico entra em ação.</p>
           </details>
           <details class="reveal">
             <summary>Em quais plataformas vocês trabalham?</summary>
-            <p>Trabalhamos com plataformas do Brasil e de fora. Na call, a gente indica quais combinam mais com o seu perfil e com o seu público.</p>
+            <p>Privacy, OnlyFans, Fansly e outras do Brasil e de fora. No diagnóstico, indicamos as que combinam com o seu público.</p>
           </details>
           <details class="reveal">
             <summary>Como funciona a cobrança?</summary>
-            <p>Depende do seu momento e dos serviços que você vai usar. A gente define isso junto no diagnóstico, e tudo fica no contrato, sem letra miúda.</p>
+            <p>Depende do seu momento e dos serviços que você vai usar. Definimos juntos no diagnóstico, e tudo fica no contrato.</p>
           </details>
           <details class="reveal">
             <summary>Preciso morar no Rio de Janeiro?</summary>
-            <p>Não precisa. Nossa base é no Rio, mas a operação é toda online e atende criadoras de qualquer lugar.</p>
+            <p>Não. Nossa base é no Rio, mas a operação é online e atende criadoras de qualquer lugar.</p>
           </details>
         </div>
       </div>
@@ -400,65 +296,18 @@
 
     <!-- ============ CONTATO ============ -->
     <section class="section section--alt contact" id="contato">
-      <div class="container contact__grid">
-        <div class="contact__copy reveal">
-          <span class="eyebrow">Contato</span>
+      <div class="container">
+        <div class="contact__card reveal">
+          <img class="contact__logo" src="assets/img/logo-glow.webp" alt="" width="96" height="96" loading="lazy">
           <h2>Pronta para <em>profissionalizar</em> a sua carreira?</h2>
-          <p>Deixa seus dados aqui que a nossa equipe te chama no WhatsApp para marcar o diagnóstico. Sem compromisso nenhum.</p>
-          <a class="contact__wa js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">
-            <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 2.9 2.6 5.3 5.5 5.5l1.1-1.2-1.8-.9-.8.7a4 4 0 0 1-2.5-2.5l.7-.8-.9-1.8z"/></svg>
-            <span><small>Prefere ir direto?</small><strong>(21) 99183-7456</strong></span>
-          </a>
-          <a class="contact__wa" href="https://instagram.com/agency_revolutions" target="_blank" rel="noopener">
-            <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>
-            <span><small>Instagram</small><strong>@agency_revolutions</strong></span>
-          </a>
+          <p>Deixa seus dados. A nossa equipe analisa o seu perfil e te chama no WhatsApp.</p>
+          <a class="btn btn--primary btn--lg btn--arrow js-modal" href="#contato">Analisar meu perfil <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <ul class="trust trust--center">
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Análise gratuita</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Sem compromisso</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg>Sigilo total</li>
+          </ul>
         </div>
-
-        <form class="form reveal" id="leadForm" name="contato" method="POST" data-netlify="true" netlify-honeypot="empresa" action="obrigado.html">
-          <input type="hidden" name="form-name" value="contato">
-          <p class="hp"><label>Não preencha: <input name="empresa"></label></p>
-
-          <div class="field">
-            <label for="f-nome">Nome ou nome artístico</label>
-            <input id="f-nome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="f-whats">WhatsApp</label>
-              <input id="f-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(21) 90000-0000">
-            </div>
-            <div class="field">
-              <label for="f-insta">Instagram ou perfil</label>
-              <input id="f-insta" name="perfil" type="text" placeholder="@seuperfil">
-            </div>
-          </div>
-          <fieldset class="field">
-            <legend>Seu momento</legend>
-            <div class="chips">
-              <label><input type="radio" name="momento" value="Já monetizo" required><span>Já monetizo</span></label>
-              <label><input type="radio" name="momento" value="Crio, mas não monetizo"><span>Crio, mas não monetizo</span></label>
-              <label><input type="radio" name="momento" value="Quero começar"><span>Quero começar</span></label>
-            </div>
-          </fieldset>
-          <div class="field">
-            <label for="f-msg">Conte um pouco sobre você <span class="opt">(opcional)</span></label>
-            <textarea id="f-msg" name="mensagem" rows="3" placeholder="Plataformas que usa, objetivos, dúvidas…"></textarea>
-          </div>
-          <label class="check">
-            <input type="checkbox" name="maior_de_idade" value="sim" required>
-            <span>Confirmo que tenho 18 anos ou mais.</span>
-          </label>
-          <button class="btn btn--primary btn--lg btn--block" type="submit">Quero meu diagnóstico</button>
-          <p class="form__note">Usamos seus dados só para falar com você. Nada é compartilhado.</p>
-
-          <div class="form__done" id="formDone" hidden>
-            <img src="assets/img/logo-pink.png" alt="" width="56" height="56">
-            <h3>Recebido.</h3>
-            <p>A nossa equipe vai te chamar no WhatsApp em breve. Quer adiantar a conversa?</p>
-            <a class="btn btn--primary js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">Chamar agora</a>
-          </div>
-        </form>
       </div>
     </section>
   </main>
@@ -472,10 +321,10 @@
       </div>
       <nav class="footer__nav" aria-label="Rodapé">
         <a href="#servicos">Serviços</a>
-        <a href="#diferenciais">Diferenciais</a>
         <a href="#metodo">Método</a>
         <a href="#faq">Dúvidas</a>
-        <a href="#contato">Contato</a>
+        <a href="trabalhe-conosco.html">Trabalhe conosco</a>
+        <a href="privacidade.html">Política de privacidade</a>
       </nav>
       <div class="footer__contact">
         <a class="js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">WhatsApp · (21) 99183-7456</a>
@@ -485,14 +334,69 @@
     </div>
     <div class="container footer__bottom">
       <span>Revolutions · © <span id="year">2026</span></span>
-      <span>Atendemos exclusivamente criadoras maiores de 18 anos.</span>
     </div>
   </footer>
 
-  <a class="wa-float js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2 2.9 2.6 5.3 5.5 5.5l1.1-1.2-1.8-.9-.8.7a4 4 0 0 1-2.5-2.5l.7-.8-.9-1.8z"/></svg>
-  </a>
+  <div class="sticky-cta" id="stickyCta">
+    <a class="btn btn--primary btn--block btn--arrow js-modal" href="#contato">Analisar meu perfil <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
 
-  <script src="assets/js/main.js" defer></script>
+  <!-- ============ POPUP ============ -->
+  <dialog class="modal" id="leadModal" aria-labelledby="leadTitle">
+    <button class="modal__close" type="button" aria-label="Fechar">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <form class="form" id="leadForm" name="contato" method="POST" data-netlify="true" netlify-honeypot="empresa" action="obrigado.html">
+      <input type="hidden" name="form-name" value="contato">
+      <header class="modal__head">
+        <span class="eyebrow">Análise gratuita</span>
+        <h2 id="leadTitle">Vamos analisar o seu perfil</h2>
+        <p>Preenche rapidinho. A nossa equipe te chama no WhatsApp.</p>
+      </header>
+      <p class="hp"><label>Não preencha: <input name="empresa"></label></p>
+
+      <div class="field">
+        <label for="f-nome">Nome ou nome artístico</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-whats">WhatsApp</label>
+          <input id="f-whats" class="js-phone" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(21) 90000-0000">
+        </div>
+        <div class="field">
+          <label for="f-insta">Instagram ou perfil</label>
+          <input id="f-insta" name="perfil" type="text" placeholder="@seuperfil">
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>Seu momento</legend>
+        <div class="chips">
+          <label><input type="radio" name="momento" value="Já monetizo" required><span>Já monetizo</span></label>
+          <label><input type="radio" name="momento" value="Crio, mas não monetizo"><span>Crio, mas não monetizo</span></label>
+          <label><input type="radio" name="momento" value="Quero começar"><span>Quero começar</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-msg">Conte um pouco sobre você <span class="opt">(opcional)</span></label>
+        <textarea id="f-msg" name="mensagem" rows="3" placeholder="Plataformas que usa, objetivos, dúvidas…"></textarea>
+      </div>
+      <label class="check">
+        <input type="checkbox" name="maior_de_idade" value="sim" required>
+        <span>Confirmo que tenho 18 anos ou mais.</span>
+      </label>
+      <button class="btn btn--primary btn--lg btn--block" type="submit">Analisar meu perfil</button>
+      <p class="form__note">Usamos seus dados apenas para falar com você. Veja a <a href="privacidade.html">política de privacidade</a>.</p>
+
+      <div class="form__done" id="formDone" hidden>
+        <img src="assets/img/logo-pink.png" alt="" width="56" height="56">
+        <h3>Recebido.</h3>
+        <p>A nossa equipe vai te chamar no WhatsApp em breve. Quer adiantar a conversa?</p>
+        <a class="btn btn--primary js-wa" href="https://wa.me/5521991837456" target="_blank" rel="noopener">Chamar agora</a>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/js/main.js?v=23" defer></script>
 </body>
 </html>
