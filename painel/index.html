@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel · Revolutions</title>
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=30">
+  <link rel="stylesheet" href="/painel/painel.css?v=2">
+</head>
+<body class="panel-body">
+
+  <!-- ============ LOGIN ============ -->
+  <main class="login" id="login" hidden>
+    <form class="form login__card" id="loginForm" novalidate>
+      <div class="login__brand">
+        <img src="/assets/img/logo-pink.png" alt="" width="48" height="48">
+        <span>Revolutions</span>
+      </div>
+      <div>
+        <h1 class="login__title">Área do cliente</h1>
+        <p class="login__sub">Entre para ver os contatos que chegaram pelo site.</p>
+      </div>
+      <div class="field">
+        <label for="l-email">E-mail</label>
+        <input id="l-email" name="email" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="l-senha">Senha</label>
+        <input id="l-senha" name="senha" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn--primary btn--lg btn--block" type="submit"><span class="js-label">Entrar</span></button>
+      <p class="form__error" id="loginError" role="alert" hidden></p>
+    </form>
+  </main>
+
+  <!-- ============ PAINEL ============ -->
+  <div class="app" id="app" hidden>
+    <aside class="side">
+      <div class="side__brand">
+        <img src="/assets/img/logo-pink.png" alt="" width="36" height="36">
+        <span>Revolutions</span>
+      </div>
+      <nav class="side__nav" aria-label="Seções">
+        <a href="#contatos" class="side__link" data-view="contatos">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2A6.5 6.5 0 0 1 21.5 20"/></svg>
+          <span>Contatos</span>
+        </a>
+        <a href="#candidaturas" class="side__link" data-view="candidaturas">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></svg>
+          <span>Candidaturas</span>
+        </a>
+        <a href="#configuracoes" class="side__link" data-view="configuracoes">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          <span>Configurações</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <!-- Contatos -->
+      <section class="view" id="view-contatos" hidden>
+        <header class="view__head">
+          <div>
+            <h1>Contatos</h1>
+            <p class="view__sub" id="leadsCount">Carregando…</p>
+          </div>
+          <button class="btn btn--ghost btn--sm js-reload" type="button">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+            Atualizar
+          </button>
+        </header>
+        <p class="form__error" id="leadsError" role="alert" hidden>Não foi possível carregar os contatos. Tenta de novo.</p>
+        <ul class="leads" id="leads"></ul>
+        <div class="empty" id="leadsEmpty" hidden>
+          <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11l2.5 7v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 13h4.5l1 2h5l1-2H20"/></svg>
+          <h2>Nenhum contato ainda</h2>
+          <p>Quando alguém preencher o formulário do site, aparece aqui e no seu e-mail.</p>
+        </div>
+      </section>
+
+      <!-- Candidaturas -->
+      <section class="view" id="view-candidaturas" hidden>
+        <header class="view__head">
+          <div>
+            <h1>Candidaturas</h1>
+            <p class="view__sub" id="candidaturasCount">Carregando…</p>
+          </div>
+          <button class="btn btn--ghost btn--sm js-reload" type="button">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+            Atualizar
+          </button>
+        </header>
+        <p class="form__error" id="candidaturasError" role="alert" hidden>Não foi possível carregar as candidaturas. Tenta de novo.</p>
+        <ul class="leads" id="candidaturas"></ul>
+        <div class="empty" id="candidaturasEmpty" hidden>
+          <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></svg>
+          <h2>Nenhuma candidatura ainda</h2>
+          <p>Quem se candidatar pela página Trabalhe conosco aparece aqui.</p>
+        </div>
+      </section>
+
+      <!-- Configurações -->
+      <section class="view" id="view-configuracoes" hidden>
+        <header class="view__head">
+          <div>
+            <h1>Configurações</h1>
+            <p class="view__sub">Sua conta e o acesso ao painel.</p>
+          </div>
+        </header>
+
+        <div class="settings">
+          <div class="form">
+            <h2 class="settings__title">Conta</h2>
+            <dl class="info">
+              <div><dt>E-mail de acesso</dt><dd id="meEmail">—</dd></div>
+              <div><dt>Novos contatos são enviados para</dt><dd id="meNotify">—</dd></div>
+            </dl>
+            <button class="btn btn--ghost" id="logout" type="button">
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11"/></svg>
+              Sair do painel
+            </button>
+          </div>
+
+          <form class="form" id="passForm" novalidate>
+            <h2 class="settings__title">Alterar senha</h2>
+            <div class="field">
+              <label for="p-atual">Senha atual</label>
+              <input id="p-atual" name="atual" type="password" autocomplete="current-password" required>
+            </div>
+            <div class="field">
+              <label for="p-nova">Nova senha <span class="opt">(mínimo 8 caracteres)</span></label>
+              <input id="p-nova" name="nova" type="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <div class="field">
+              <label for="p-conf">Confirmar nova senha</label>
+              <input id="p-conf" name="confirmar" type="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit"><span class="js-label">Salvar nova senha</span></button>
+            <p class="form__error" id="passError" role="alert" hidden></p>
+            <p class="form__ok" id="passOk" role="status" hidden>Senha alterada. Outros aparelhos conectados foram desconectados.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/painel/painel.js?v=2" defer></script>
+</body>
+</html>
