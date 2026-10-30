@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/creator-1.webp" media="(min-width: 641px)">
-  <link rel="stylesheet" href="assets/css/style.css?v=49">
+  <link rel="stylesheet" href="assets/css/style.css?v=50">
 </head>
 <body>
 
@@ -50,6 +50,15 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="topo">
+      <svg class="hero__ring hero__ring--wide" viewBox="0 0 1000 1000" aria-hidden="true">
+        <defs>
+          <filter id="glowWide" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="9" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <circle cx="500" cy="500" r="470" pathLength="1" filter="url(#glowWide)"/>
+      </svg>
       <div class="container hero__grid">
         <div class="hero__copy">
           <span class="pill pill--outline reveal">Gestão de carreira · Criadoras +18</span>
@@ -65,7 +74,7 @@
         </div>
 
         <div class="hero__visual" aria-hidden="true">
-          <svg class="hero__ring" viewBox="0 0 1000 1000" aria-hidden="true">
+          <svg class="hero__ring hero__ring--tight" viewBox="0 0 1000 1000" aria-hidden="true">
             <defs>
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="9" result="b"/>
