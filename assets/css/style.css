@@ -181,18 +181,24 @@ em { font-style: normal; color: var(--pink); }
 
 .brand { display: flex; align-items: center; }
 .brand::after { content: ""; margin-left: var(--gap); width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 12px var(--pink); flex: none; }
-.brand__name {
-  font: 700 clamp(30px, 4.2vw, 56px)/1 var(--font-title); letter-spacing: -.03em; white-space: nowrap;
-  background: linear-gradient(180deg, #fff 20%, rgba(245,245,247,.45)); -webkit-background-clip: text; background-clip: text; color: transparent;
+/* Logos oficiais usados como máscara sobre o degradê prateado */
+.brand__logo {
+  --h: clamp(30px, 3.4vw, 46px);
+  display: block; height: var(--h); aspect-ratio: var(--r);
+  background: linear-gradient(180deg, #fff 15%, rgba(245,245,247,.42));
+  -webkit-mask: var(--logo) no-repeat center / contain; mask: var(--logo) no-repeat center / contain;
   transition: filter .3s;
 }
+.brand--privacy .brand__logo { --logo: url("../img/brands/privacy.svg"); --r: 86 / 18; --h: clamp(28px, 3.2vw, 42px); }
+.brand--onlyfans .brand__logo { --logo: url("../img/brands/onlyfans.svg"); --r: 1876.66 / 328.57; }
+.brand--fansly .brand__logo { --logo: url("../img/brands/fansly.svg"); --r: 100 / 28; --h: clamp(32px, 3.6vw, 50px); }
+.brand--telegram .brand__logo { --logo: url("../img/brands/telegram.svg"); --r: 203 / 50; --h: clamp(32px, 3.6vw, 50px); }
 .brand__tag {
-  margin-left: 12px; align-self: flex-start; margin-top: 2px;
+  margin-left: 12px; align-self: flex-start; margin-top: -6px;
   font: 600 10px/1 var(--font-title); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
   color: var(--pink); border: 1px solid var(--pink-a25); background: var(--pink-a10); border-radius: 999px; padding: 6px 9px;
 }
-.brand:hover .brand__name { filter: drop-shadow(0 0 18px rgba(255,10,117,.45)); }
-.brand--more .brand__name { background: none; color: rgba(245,245,247,.35); -webkit-text-fill-color: rgba(245,245,247,.35); }
+.brand:hover .brand__logo { filter: drop-shadow(0 0 16px rgba(255,10,117,.5)); }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee { mask-image: none; -webkit-mask-image: none; }
@@ -650,7 +656,7 @@ input:user-invalid, textarea:user-invalid { border-color: #ff5a5f; }
   .platforms__head p { font-size: 14px; }
   .marquee { --gap: 30px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .marquee__track { animation-duration: 24s; }
-  .brand__name { font-size: 28px; }
+  .brand__logo { --h: 26px !important; }
   .brand__tag { display: none; }
   .brand::after { width: 5px; height: 5px; }
   .footer__inner { grid-template-columns: 1fr; }
