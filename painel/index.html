@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=50">
-  <link rel="stylesheet" href="/painel/painel.css?v=3">
+  <link rel="stylesheet" href="/painel/painel.css?v=7">
 </head>
 <body class="panel-body">
 
@@ -76,7 +76,12 @@
           </button>
         </header>
         <p class="form__error" id="leadsError" role="alert" hidden>Não foi possível carregar os contatos. Tenta de novo.</p>
-        <ul class="leads" id="leads"></ul>
+        <div class="table table--leads" id="leadsTable" hidden>
+          <div class="table__head" aria-hidden="true">
+            <span>Contato</span><span>WhatsApp</span><span>Momento</span><span>Mensagem</span><span>Recebido</span><span class="ta-r">Ações</span>
+          </div>
+          <ul class="leads" id="leads"></ul>
+        </div>
         <div class="empty" id="leadsEmpty" hidden>
           <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11l2.5 7v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 13h4.5l1 2h5l1-2H20"/></svg>
           <h2>Nenhum contato ainda</h2>
@@ -97,7 +102,12 @@
           </button>
         </header>
         <p class="form__error" id="candidaturasError" role="alert" hidden>Não foi possível carregar as candidaturas. Tenta de novo.</p>
-        <ul class="leads" id="candidaturas"></ul>
+        <div class="table table--cand" id="candidaturasTable" hidden>
+          <div class="table__head" aria-hidden="true">
+            <span>Candidato</span><span>Vaga</span><span>Contato</span><span>Recebido</span><span class="ta-r">Ações</span>
+          </div>
+          <ul class="leads" id="candidaturas"></ul>
+        </div>
         <div class="empty" id="candidaturasEmpty" hidden>
           <svg class="i i--lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></svg>
           <h2>Nenhuma candidatura ainda</h2>
@@ -161,6 +171,6 @@
     </div>
   </dialog>
 
-  <script src="/painel/painel.js?v=3" defer></script>
+  <script src="/painel/painel.js?v=5" defer></script>
 </body>
 </html>

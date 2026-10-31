@@ -96,53 +96,91 @@
     wa: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>',
   };
 
-  const card = ({ list, key, nome, tag, createdAt, meta, wa, texto }) => `
-    <li class="lead" data-list="${list}" data-key="${esc(key)}">
-      <div>
-        <div class="lead__top">
-          <span class="lead__name">${esc(nome) || 'Sem nome'}</span>
-          ${tag ? `<span class="pill pill--xs pill--soft">${esc(tag)}</span>` : ''}
-          <span class="lead__date">${esc(fmtDate(createdAt))}</span>
-        </div>
-        <div class="lead__meta">${meta.filter(Boolean).join('')}</div>
-      </div>
-      <div class="lead__actions">
-        <a class="btn btn--sm lead__wa" href="${esc(wa)}" target="_blank" rel="noopener">${icon.wa}Chamar no WhatsApp</a>
-        <button class="lead__del js-del" type="button" aria-label="Excluir ${esc(nome) || 'registro'}" title="Excluir">${icon.trash}</button>
-      </div>
-      ${texto ? `<p class="lead__msg">${esc(texto)}</p>` : ''}
-    </li>`;
+  // "agora", "há 5 min", "há 3 h", "ontem" ou a data
+  const ago = iso => {
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    const min = Math.round((Date.now() - d) / 60000);
+    if (min < 1) return 'agora';
+    if (min < 60) return `há ${min} min`;
+    if (min < 60 * 24) return `há ${Math.round(min / 60)} h`;
+    const yest = new Date(); yest.setDate(yest.getDate() - 1);
+    if (d.toDateString() === yest.toDateString()) return 'ontem';
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.', '');
+  };
+  const clock = iso => {
+    const d = new Date(iso);
+    return isNaN(d) ? '' : d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', ' ·');
+  };
+  const isNew = iso => Date.now() - new Date(iso) < 24 * 60 * 60 * 1000;
 
-  const renderLead = l => card({
+  const initials = nome => {
+    const parts = String(nome).trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return '?';
+    return ((parts[0][0] || '') + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+  };
+
+  const chevron = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+
+  const row = ({ list, key, nome, sub, createdAt, cells, wa, detail }) => {
+    const fresh = isNew(createdAt);
+    return `
+    <li class="lead${detail ? ' lead--expandable' : ''}" data-list="${list}" data-key="${esc(key)}">
+      <div class="lead__row">
+        <div class="cell cell--who">
+          <span class="avatar${fresh ? ' is-new' : ''}" aria-hidden="true" title="${fresh ? 'Novo, chegou nas últimas 24 h' : ''}">${esc(initials(nome))}</span>
+          <span class="who">
+            <span class="lead__name">${esc(nome) || 'Sem nome'}</span>
+            ${sub ? `<span class="lead__sub">${sub}</span>` : ''}
+          </span>
+        </div>
+        ${cells.join('')}
+        <div class="cell cell--when">
+          <span class="time${fresh ? ' is-new' : ''}" title="${esc(fmtDate(createdAt))}"><b>${esc(ago(createdAt))}</b><small>${esc(clock(createdAt))}</small></span>
+        </div>
+        <div class="cell cell--actions">
+          <a class="lead__wa" href="${esc(wa)}" target="_blank" rel="noopener">${icon.wa}WhatsApp</a>
+          <button class="icon-btn lead__toggle js-toggle" type="button" aria-expanded="false" aria-label="Ver detalhes" title="Ver detalhes"${detail ? '' : ' disabled'}>${chevron}</button>
+          <button class="icon-btn lead__del js-del" type="button" aria-label="Excluir ${esc(nome) || 'registro'}" title="Excluir">${icon.trash}</button>
+        </div>
+      </div>
+      ${detail ? `<div class="lead__detail" hidden>${detail}</div>` : ''}
+    </li>`;
+  };
+
+  const renderLead = l => row({
     list: 'leads',
     key: l.key,
     nome: l.nome,
-    tag: l.momento,
+    sub: l.perfil ? esc(l.perfil) : '',
     createdAt: l.createdAt,
-    meta: [
-      `<span>${icon.phone}${esc(l.whatsapp)}</span>`,
-      l.perfil && `<span>${icon.user}${esc(l.perfil)}</span>`,
+    cells: [
+      `<div class="cell cell--opt cell--a"><span class="mono">${esc(l.whatsapp)}</span></div>`,
+      `<div class="cell cell--opt cell--b${l.momento ? '' : ' is-empty'}">${l.momento ? `<span class="pill pill--xs pill--soft">${esc(l.momento)}</span>` : '<span class="muted">—</span>'}</div>`,
+      `<div class="cell cell--opt cell--c cell--msg${l.mensagem ? '' : ' is-empty'}">${l.mensagem ? `<span class="preview">${esc(l.mensagem)}</span>` : '<span class="muted">Sem mensagem</span>'}</div>`,
     ],
     wa: waLink(l.whatsapp, `Oi, ${firstName(l.nome)}! Aqui é da Revolutions. Recebemos o seu contato pelo site e queremos conhecer melhor o seu perfil. Podemos conversar?`),
-    texto: l.mensagem,
+    detail: l.mensagem ? `<h4>Mensagem</h4><p class="lead__msg">${esc(l.mensagem)}</p>` : '',
   });
 
   const renderCandidatura = c => {
     const url = safeUrl(c.link);
-    return card({
+    const facts = [
+      c.cidade && `<span>${icon.pin}${esc(c.cidade)}</span>`,
+      c.link && `<span>${icon.link}${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(c.link)}</a>` : esc(c.link)}</span>`,
+    ].filter(Boolean).join('');
+    return row({
       list: 'candidaturas',
       key: c.key,
       nome: c.nome,
-      tag: c.vaga,
+      sub: c.cidade ? esc(c.cidade) : '',
       createdAt: c.createdAt,
-      meta: [
-        `<span>${icon.phone}${esc(c.whatsapp)}</span>`,
-        c.email && `<span>${icon.mail}<a href="mailto:${esc(c.email)}">${esc(c.email)}</a></span>`,
-        c.cidade && `<span>${icon.pin}${esc(c.cidade)}</span>`,
-        c.link && `<span>${icon.link}${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(c.link)}</a>` : esc(c.link)}</span>`,
+      cells: [
+        `<div class="cell cell--opt cell--b">${c.vaga ? `<span class="pill pill--xs pill--soft">${esc(c.vaga)}</span>` : '<span class="muted">—</span>'}</div>`,
+        `<div class="cell cell--opt cell--a"><span class="stack"><span class="mono">${esc(c.whatsapp)}</span>${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : ''}</span></div>`,
       ],
       wa: waLink(c.whatsapp, `Oi, ${firstName(c.nome)}! Aqui é da Revolutions. Recebemos a sua candidatura para a vaga de ${c.vaga || 'nossa equipe'} e queremos conversar com você. Podemos falar agora?`),
-      texto: c.experiencia,
+      detail: (c.experiencia ? `<h4>Experiência</h4><p class="lead__msg">${esc(c.experiencia)}</p>` : '') + (facts ? `<div class="lead__facts">${facts}</div>` : ''),
     });
   };
 
@@ -157,6 +195,7 @@
     try {
       const { items, total } = await api(l.url);
       $(name).innerHTML = items.map(l.render).join('');
+      $(`${name}Table`).hidden = items.length === 0;
       $(`${name}Empty`).hidden = items.length > 0;
       $(`${name}Count`).textContent = total === 1 ? l.one : l.many(total);
     } catch (err) {
@@ -176,7 +215,21 @@
   const delDialog = $('delDialog');
   let pending = null;
 
+  /* Linha expansível: clique na linha ou na seta mostra a mensagem completa */
+  const toggleRow = li => {
+    const detail = li.querySelector('.lead__detail');
+    if (!detail) return;
+    const open = detail.hidden;
+    detail.hidden = !open;
+    li.classList.toggle('is-open', open);
+    li.querySelector('.js-toggle').setAttribute('aria-expanded', String(open));
+  };
+
   document.querySelectorAll('.leads').forEach(ul => ul.addEventListener('click', e => {
+    if (!e.target.closest('a, .js-del, .lead__detail') && e.target.closest('.lead__row')) {
+      toggleRow(e.target.closest('.lead'));
+      return;
+    }
     const btn = e.target.closest('.js-del');
     if (!btn) return;
     const li = btn.closest('.lead');

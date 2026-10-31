@@ -1,6 +1,6 @@
 (() => {
   const WA_NUMBER = '5521991837456';
-  const WA_TEXT = 'Olá! Vim pelo site da Revolutions e quero saber mais sobre a gestão de carreira.';
+  const WA_TEXT = 'Olá! Vim pelo site da Revolutions. Sou criadora de conteúdo +18 e quero mais detalhes de como funciona a gestão de carreira.';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
 
